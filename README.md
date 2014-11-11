@@ -1,4 +1,6 @@
-[WebOle.github.io](webole.github.io)
+Web Olé
 ================
 
-Viva! Viva! Web Ole
+##Viva! Viva! Web Olé gh pages repo 
+
+##[WebOlé.github.io](webole.github.io)
