@@ -101,7 +101,7 @@ $ git checkout gh-pages</p>
 <li>
 <p>Create a new bucket. For a non-publicly-accessible bucket (like Bootstrap uses), it's recommended that the bucket name be random to increase security. On most *nix machines, you can easily generate a random UUID to use as the bucket name using Python:</p>
 
-<div class="highlight highlight-bash"><pre>python -c <span class="s2">"import uuid; print(uuid.uuid4())"</span></pre></div>
+<div class="highlight highlight-bash"><pre>python -c <span class="pl-s1"><span class="pl-pds">"</span>import uuid; print(uuid.uuid4())<span class="pl-pds">"</span></span></pre></div>
 </li>
 <li><p>Determine and note what your bucket's ARN is. The ARN for an S3 bucket is of the form: <code>arn:aws:s3:::the-bucket-name-goes-here</code></p></li>
 <li>In the bucket's Properties pane, in the "Permissions" section, click the "Edit bucket policy" button.</li>
@@ -109,27 +109,27 @@ $ git checkout gh-pages</p>
 <p>Input and submit an IAM Policy that grants the user at least read+write rights to the bucket. AWS has a policy generator and some examples to help with crafting the policy. Here's the policy that Bootstrap uses, with the sensitive bits censored:</p>
 
 <div class="highlight highlight-json"><pre>{
-    <span class="s2">"Version"</span>: <span class="s2">"2012-10-17"</span>,
-    <span class="s2">"Id"</span>: <span class="s2">"PolicyTravisReadWriteNoAdmin"</span>,
-    <span class="s2">"Statement"</span>: [
+    <span class="pl-s1"><span class="pl-pds">"</span>Version<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>2012-10-17<span class="pl-pds">"</span></span>,
+    <span class="pl-s1"><span class="pl-pds">"</span>Id<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>PolicyTravisReadWriteNoAdmin<span class="pl-pds">"</span></span>,
+    <span class="pl-s1"><span class="pl-pds">"</span>Statement<span class="pl-pds">"</span></span>: [
         {
-            <span class="s2">"Sid"</span>: <span class="s2">"StmtXXXXXXXXXXXXXX"</span>,
-            <span class="s2">"Effect"</span>: <span class="s2">"Allow"</span>,
-            <span class="s2">"Principal"</span>: {
-                <span class="s2">"AWS"</span>: <span class="s2">"arn:aws:iam::XXXXXXXXXXXXXX:user/travis-ci"</span>
+            <span class="pl-s1"><span class="pl-pds">"</span>Sid<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>StmtXXXXXXXXXXXXXX<span class="pl-pds">"</span></span>,
+            <span class="pl-s1"><span class="pl-pds">"</span>Effect<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>Allow<span class="pl-pds">"</span></span>,
+            <span class="pl-s1"><span class="pl-pds">"</span>Principal<span class="pl-pds">"</span></span>: {
+                <span class="pl-s1"><span class="pl-pds">"</span>AWS<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>arn:aws:iam::XXXXXXXXXXXXXX:user/travis-ci<span class="pl-pds">"</span></span>
             },
-            <span class="s2">"Action"</span>: [
-                <span class="s2">"s3:AbortMultipartUpload"</span>,
-                <span class="s2">"s3:GetObjectVersion"</span>,
-                <span class="s2">"s3:ListBucket"</span>,
-                <span class="s2">"s3:DeleteObject"</span>,
-                <span class="s2">"s3:DeleteObjectVersion"</span>,
-                <span class="s2">"s3:GetObject"</span>,
-                <span class="s2">"s3:PutObject"</span>
+            <span class="pl-s1"><span class="pl-pds">"</span>Action<span class="pl-pds">"</span></span>: [
+                <span class="pl-s1"><span class="pl-pds">"</span>s3:AbortMultipartUpload<span class="pl-pds">"</span></span>,
+                <span class="pl-s1"><span class="pl-pds">"</span>s3:GetObjectVersion<span class="pl-pds">"</span></span>,
+                <span class="pl-s1"><span class="pl-pds">"</span>s3:ListBucket<span class="pl-pds">"</span></span>,
+                <span class="pl-s1"><span class="pl-pds">"</span>s3:DeleteObject<span class="pl-pds">"</span></span>,
+                <span class="pl-s1"><span class="pl-pds">"</span>s3:DeleteObjectVersion<span class="pl-pds">"</span></span>,
+                <span class="pl-s1"><span class="pl-pds">"</span>s3:GetObject<span class="pl-pds">"</span></span>,
+                <span class="pl-s1"><span class="pl-pds">"</span>s3:PutObject<span class="pl-pds">"</span></span>
             ],
-            <span class="s2">"Resource"</span>: [
-                <span class="s2">"arn:aws:s3:::XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"</span>,
-                <span class="s2">"arn:aws:s3:::XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/*"</span>
+            <span class="pl-s1"><span class="pl-pds">"</span>Resource<span class="pl-pds">"</span></span>: [
+                <span class="pl-s1"><span class="pl-pds">"</span>arn:aws:s3:::XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX<span class="pl-pds">"</span></span>,
+                <span class="pl-s1"><span class="pl-pds">"</span>arn:aws:s3:::XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/*<span class="pl-pds">"</span></span>
             ]
         }
     ]
@@ -141,9 +141,9 @@ $ git checkout gh-pages</p>
 <li>
 <p>Encrypt the environment variables:</p>
 
-<div class="highlight highlight-bash"><pre>travis encrypt --repo twbs/bootstrap <span class="s2">"AWS_ACCESS_KEY_ID=XXX"</span>
-travis encrypt --repo twbs/bootstrap <span class="s2">"AWS_SECRET_ACCESS_KEY=XXX"</span>
-travis encrypt --repo twbs/bootstrap <span class="s2">"TWBS_S3_BUCKET=XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"</span></pre></div>
+<div class="highlight highlight-bash"><pre>travis encrypt --repo twbs/bootstrap <span class="pl-s1"><span class="pl-pds">"</span>AWS_ACCESS_KEY_ID=XXX<span class="pl-pds">"</span></span>
+travis encrypt --repo twbs/bootstrap <span class="pl-s1"><span class="pl-pds">"</span>AWS_SECRET_ACCESS_KEY=XXX<span class="pl-pds">"</span></span>
+travis encrypt --repo twbs/bootstrap <span class="pl-s1"><span class="pl-pds">"</span>TWBS_S3_BUCKET=XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX<span class="pl-pds">"</span></span></pre></div>
 </li>
 <li><p>Add the resulting secure environment variables to <code>.travis.yml</code>.</p></li>
 </ol>
